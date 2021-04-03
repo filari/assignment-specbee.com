@@ -1,0 +1,12 @@
+hello_world.admin_config:
+  title: 'Custom Setting For Website'
+  description: 'Get your custom configuration'
+  parent: system.admin_config
+  url: http://www.google.com
+  weight: -99
+hello_world.second_link:
+  title: 'Set Custom Configuration'
+  description: 'For testing'
+  parent: hello_world.admin_config
+  menu_name: hello_world
+  route_name: hello_world.greeting_form

@@ -1,0 +1,7 @@
+hello_world.greeting_form:
+  path: '/admin/config/custom-configuration'
+  defaults:
+    _form: '\Drupal\hello_world\Form\SalutationConfigurationForm'
+    _title: 'Custom configuration'
+  requirements:
+    _permission: 'administer site configuration'
