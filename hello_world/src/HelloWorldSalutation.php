@@ -52,26 +52,46 @@ class HelloWorldSalutation {
     $config = $this->configFactory->get('hello_world.custom_configuration');
     $timezone = $config->get('timezone');
 
+    $message = '';
+
     if($timezone == ''){
-      return $this->t('Please set timezone ');
+      $message = $this->t('Please set timezone ');
     }
+
     $time = new DateTime();
     $timezoneObj = new DateTimeZone($timezone);
     $time->setTimezone($timezoneObj);
     $cTime =  $time->format('jS M Y - h:i A');
 
 
-    if ((int) $time->format('G') >= 06 && (int) $time->format('G') < 12) {
-      return $this->t('Good morning  # ' . $cTime);
+  /*  if ((int) $time->format('G') >= 06 && (int) $time->format('G') < 12) {
+      $message = $this->t('Good morning  # ' . $cTime);
     }
 
     if ((int) $time->format('G') >= 12 && (int) $time->format('G') < 18) {
-      return $this->t('Good afternoon  # ' . $cTime);
+      $message = $this->t('Good afternoon  # ' . $cTime);
     }
 
     if ((int) $time->format('G') >= 18) {
-      return $this->t('Good evening  # ' . $cTime);
-    }
+      $message = $this->t('Good evening  # ' . $cTime);
+    }*/
+
+
+    $data = [];
+    $data['message'] = $cTime;
+    $data['country'] = $config->get('country');
+    $data['city'] = $config->get('city');
+
+    $renderable = [
+      '#theme' => 'custom_configuration',
+      '#data' => $data,
+      '#cache' => [
+        'max-age' => 0
+      ]
+    ];
+
+    return  \Drupal::service('renderer')->render($renderable);
+
   }
 
 

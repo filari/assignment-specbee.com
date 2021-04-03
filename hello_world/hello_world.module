@@ -22,3 +22,22 @@ function hello_world_help($route_name, RouteMatchInterface $route_match) {
   }
 }
 
+
+
+function hello_world_theme() {
+
+
+  return [
+    'custom_crm' => [
+      'render element' => 'children',
+    ],
+
+    'custom_configuration' => [
+      'variables' => [
+        'data' => []
+      ]
+    ]
+
+  ];
+
+}
